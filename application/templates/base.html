@@ -1,0 +1,58 @@
+<html>
+    <head>
+        {% if title %}
+        <title>{{ title }} - Groover</title>
+        {% else %}
+        <title>Groover</title>
+        {% endif %}
+
+        <!--- This doesn't work for who knows why
+        <link rel="stylesheet" type="text/css" href="./style.css"> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+        
+        <style>
+
+        sbox {	
+            text-align: center;
+            width: 450px;
+            padding: 15px;
+            border: 5px solid #C0C0C0;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        a:link {
+            color: #C0C0C0;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color:lightslategray;
+            text-decoration: none;
+        }
+
+        div.a {
+            text-indent: 30px;
+        }
+        </style>
+    </head>
+    <body>
+        <div>
+            <br><br>
+            <h1 style="font-size:80px; text-align:center; margin-bottom: -32px"><a href = "/" style = "color:black"><b>Groover</b></a></h1>
+            <p style="text-align: center;  margin-left: 53px"><i>smarter music recommendations</i></p>
+        </div>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+        
+    </body>
+</html>

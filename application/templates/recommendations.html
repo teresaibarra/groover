@@ -1,0 +1,176 @@
+<html>
+    <head>
+        {% if title %}
+        <title>{{ title }} - Groover</title>
+        {% else %}
+        <title>Groover</title>
+        {% endif %}
+        <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <style>
+            rbox {	
+                text-align: center;
+                width: 900px;
+                padding: 0px;
+                border: 5px solid #ffffff;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: -90px;
+            }
+            tbox {	
+                text-align: left;
+                font-size:15px;
+                width: 222px;
+                word-wrap: break-word;
+                white-space:normal;
+                display: inline-block;
+                margin-left: 7px;
+            }
+
+            abox {	
+                text-align: left;
+                font-size:12px;
+                width: 222px;
+                display: inline-block;
+                margin-left: 7px;
+                margin-top: -30px;
+            }
+            ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                display: block;
+                text-align: center;
+                padding: 10px;
+                text-decoration: none;
+            }
+
+            li {
+                float: left;
+                z-index: -1;
+                position: relative;
+            }
+            body{
+                font-family: 'Muli', sans-serif;
+                font-weight:bolder;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+            /* Create three equal columns that floats next to each other */
+            .column {
+                float:left;
+                width: 33.33%;
+                padding: 10px;
+                vertical-align: middle;
+            }
+
+            /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+            @media screen and (max-width: 600px) {
+            .column {
+                width: 100%;
+            }
+            }
+            /* Clear floats after the columns */
+            .row:after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+            .centered-and-cropped { 
+                object-fit: cover;
+            }
+            audio.req { 
+                width: 250px; 
+            }
+
+            audio.rec { 
+                width: 222px; 
+                margin-left:-7px;
+            }
+
+            div.scrollmenu {
+                overflow: auto;
+                white-space: nowrap;
+            }
+            
+            p.small {
+            line-height: 0.8;
+            }
+
+        </style>
+    </head>
+    <body>
+        <a href="/" style="margin-left: 80px"><button style="font-size: 13px; border-radius: 24px; margin-top: 90px">&#x21BB; Groove Again!</button></a>
+
+        <rbox>
+            <ul>
+            <div class="row">
+                <div class="column">
+                    <p style="font-size:30px; text-align:left; margin-left: 40px; margin-top:50px">Based on the<br>lyrical content of</p><br><br>
+                </div>
+                <div class="column">
+                    
+                    {% with messages = get_flashed_messages(category_filter=["reqart"]) %}
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                    {% endwith %}
+                    {% with messages = get_flashed_messages(category_filter=["reqpreview"]) %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                {{ message }}
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}  
+                </div>
+                <div class="column">
+                    {% with messages = get_flashed_messages(category_filter=["reqtitle"]) %}
+                    <p style="font-size:40px; text-align: left; font-weight:bolder;">
+                    {% for message in messages %}
+                        {{ message }}<br>
+                    {% endfor %} 
+                    {% endwith %}</p>
+                    <p style="font-size:40px; text-align: left; font-weight:normal;margin-top:-35px;">
+                    {% with messages = get_flashed_messages(category_filter=["reqartist"]) %}
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %} 
+                    {% endwith %}
+                </p></div>
+            </div>
+
+            <p style="font-size:16px;text-align:left; margin-bottom: -8px;margin-left: 5px; font-weight: 900;">Your Recommendations</p><hr>
+            <div class="scrollmenu">
+            {% with messages = get_flashed_messages(category_filter=["art"]) %}
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+            {% endwith %} <br>
+            <p class="small">
+            {% with messages = get_flashed_messages(category_filter=["songtitle"]) %}
+            {% for message in messages %}
+                <tbox>{{ message }}</tbox>
+            {% endfor %}
+            {% endwith %} <br>
+            {% with messages = get_flashed_messages(category_filter=["songartist"]) %}
+            {% for message in messages %}
+                <abox>{{ message }}</abox>
+            {% endfor %}
+            {% endwith %} </p>
+            <br>
+            <!--
+            {% with messages = get_flashed_messages(category_filter=["preview"]) %}
+            {% for message in messages %}
+                <abox>{{ message }}</abox>
+            {% endfor %}
+            {% endwith %}
+            -->
+            </div>
+            </ul>
+        </rbox>
+    </body>
+</html>

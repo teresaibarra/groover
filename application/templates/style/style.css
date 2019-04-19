@@ -1,0 +1,27 @@
+sbox {	
+    text-align: center;
+    width: 450px;
+    padding: 15px;
+    border: 5px solid #C0C0C0;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+a:link {
+    color: #C0C0C0;
+    text-decoration: none;
+}
+
+a:hover {
+    color:lightslategray;
+    text-decoration: none;
+}
+
+div.a {
+    text-indent: 30px;
+}
+body{
+    font-family: 'Muli', sans-serif;
+    font-weight:500;
+}
