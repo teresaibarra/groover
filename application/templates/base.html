@@ -5,37 +5,7 @@
         {% else %}
         <title>Groover</title>
         {% endif %}
-
-        <!--- This doesn't work for who knows why
-        <link rel="stylesheet" type="text/css" href="./style.css"> 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
-        
-        <style>
-
-        sbox {	
-            text-align: center;
-            width: 450px;
-            padding: 15px;
-            border: 5px solid #C0C0C0;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        a:link {
-            color: #C0C0C0;
-            text-decoration: none;
-        }
-
-        a:hover {
-            color:lightslategray;
-            text-decoration: none;
-        }
-
-        div.a {
-            text-indent: 30px;
-        }
-        </style>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     </head>
     <body>
         <div>
@@ -53,6 +23,6 @@
         {% endif %}
         {% endwith %}
         {% block content %}{% endblock %}
-        
+
     </body>
 </html>

@@ -1,4 +1,4 @@
-sbox {	
+sbox {
     text-align: center;
     width: 450px;
     padding: 15px;
@@ -20,8 +20,4 @@ a:hover {
 
 div.a {
     text-indent: 30px;
-}
-body{
-    font-family: 'Muli', sans-serif;
-    font-weight:500;
 }
