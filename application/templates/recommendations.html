@@ -48,7 +48,10 @@
                 </p></div>
             </div>
 
-            <p style="font-size:16px;text-align:left; margin-bottom: -8px;margin-left: 5px; font-weight: 900;">Your Recommendations</p><hr>
+            <p style="font-size:16px;text-align:left; margin-bottom: -8px;margin-left: 5px; font-weight: 900;">Your Recommendations</p>
+            <p style="font-size:20px;text-align:right; margin-top:-25px; margin-bottom: -8px;margin-left: 5px; font-weight: 900;">&laquo; &raquo;
+            </p>
+            <hr>
             <div class="scrollmenu">
             {% with messages = get_flashed_messages(category_filter=["art"]) %}
             {% for message in messages %}
