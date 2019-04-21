@@ -2,13 +2,15 @@
 
 {% block content %}
 <br>
-    <sbox><br>
+    <sbox>
+    <a href = "/"><img src="{{ url_for('static', filename='css/logo.png') }}" style="width:470px; height:110px;"></a>
+    <br><hr><br>
     <h2 style="margin-top:-1px">How Groover Works</h2>
     <div class="a">
     <p style="margin-top:-10px; text-align:left">
     Groover  is  a  web  application  that implements a deep learning neural network to generate music recommendations based  on  your favorite song's  lyrical content.  We measure document similarity between your input song’s lyrics  and  the  lyrics  of  55,000 songs  on  our  pre-trained  neural network model, then give you the top matches.<br><br>
     This  web  app  was  developed  by  Siena  Guerrero,  Trevor  Walker,  Walker Quinn,  Teresa  Ibarra,  and  Jocelyn  Chen  for  their  Spring  2019  CS121 (“Software Development”) project at Harvey Mudd College. <br><br>
     View Groover’s Github <a href="https://github.com/teresaibarra/groover">here</a>.
-    </p></div>
+    <br><br><hr></p></div>
     </sbox>
 {% endblock %}

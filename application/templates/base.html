@@ -5,14 +5,14 @@
         {% else %}
         <title>Groover</title>
         {% endif %}
+        <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
         <link rel="icon" type="image/png" href="{{ url_for('static', filename='css/ruby_doo.png') }}">
     </head>
     <body>
         <div>
-            <br><br>
-            <h1 style="font-size:80px; text-align:center; margin-bottom: -32px"><a href = "/" style = "color:black"><b>Groover</b></a></h1>
-            <p style="text-align: center;  margin-left: 53px"><i>smarter music recommendations</i></p>
+            <!--<h1 style="font-size:80px; text-align:center; margin-bottom: -32px"><a href = "/" style = "color:black"><b>Groover</b></a></h1>
+            <p style="text-align: center;  margin-left: 53px"><i>smarter music recommendations</i></p>-->
         </div>
         {% with messages = get_flashed_messages() %}
         {% if messages %}
