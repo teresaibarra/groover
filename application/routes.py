@@ -49,7 +49,8 @@ def recommendations(artist, title):
                     flash(message, category='preview')
 
     else:
-        flash('Sorry, we did not find the track "{}" by {}. Try again?'.format(
+        flash('Whoops, we did not find the track "{}" by {}!'.format(
             title, artist), category='error')
+        return render_template('whoops.html', title='Song Not Found')
 
     return render_template('recommendations.html', title='Your Recommendations')
