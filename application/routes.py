@@ -24,7 +24,7 @@ def recommendations(artist, title):
         flash('by {}'.format(
             rec.get_artist()), category='reqartist')
 
-        message = Markup("<img src='{url}' class='centered-and-cropped' style='width:250px; height:250px;' />"
+        message = Markup("<img src='{url}' class='centered-and-cropped' style='width:230px; height:230px;' />"
             .format(url=rec.get_album_image_url()))
         flash(message, category='reqart')
 
