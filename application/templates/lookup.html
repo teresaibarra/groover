@@ -2,13 +2,13 @@
 {% block content %}
 <br>
     <sbox>
-            <a href = "/"><img src="{{ url_for('static', filename='css/logo.png') }}" style="width:470px; height:110px;"></a><br><br>
+            <a href = "/"><img src="{{ url_for('static', filename='css/logo.png') }}" style="width:470px; height:110px; margin-left:-7px;"></a><br><br>
     <form action="" method="post" autocomplete="off" novalidate>
         {{ form.hidden_tag() }}
             {{ form.artist(placeholder='Artist') }}
             {{ form.title(placeholder='Title') }}
             {{ form.submit(style="width:80px; padding: 6px 8px; font-size:14px; float: right;") }}<br><br>
-            <a href="/about" style="font-size: 12px; display: block;text-align:right; float:right; margin-right:-90px; margin-top:10px;">ⓘ  How does this work?</a>
+            <a href="/about" style="font-size: 12px; display: block;text-align:right; float:right; margin-right:-85px; margin-top:10px;">ⓘ  How does this work?</a>
         </p>
     </form>
     </sbox>
