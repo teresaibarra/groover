@@ -1,48 +1,69 @@
 <html>
     <head>
         {% if title %}
-        <title>{{ title }} - Groover</title>
+            <title>{{ title }} - Groover</title>
         {% else %}
-        <title>Groover</title>
+            <title>Groover</title>
         {% endif %}
         <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/recommendations.css') }}">
         <link rel="icon" type="image/png" href="{{ url_for('static', filename='css/ruby_doo.png') }}">
     </head>
+
     <body>
         <rbox>
             <ul>
-            <div class="row">
-                <div class="column">
-                    <p style="font-size:30px; text-align:left; margin-left: 40px; margin-top:50px">Based on the<br>lyrical content of</p><br><br>
-                </div>
-                <div class="column">
-
-                    {% with messages = get_flashed_messages(category_filter=["reqart"]) %}
-                    {% for message in messages %}
-                        {{ message }}
-                    {% endfor %}
-                    {% endwith %}
-                    {% with messages = get_flashed_messages(category_filter=["reqpreview"]) %}
-                        {% if messages %}
+                <div class="row">
+                    <div class="column">
+                        <p style="font-size:30px; text-align:left; margin-left: 40px; margin-top:50px">Based on the<br>lyrical content of</p><br><br>
+                    </div>
+                    <div class="column">
+                        {% with messages = get_flashed_messages(category_filter=["reqart"]) %}
                             {% for message in messages %}
                                 {{ message }}
                             {% endfor %}
-                        {% endif %}
-                    {% endwith %}
+                        {% endwith %}
+                        {% with messages = get_flashed_messages(category_filter=["reqpreview"]) %}
+                            {% if messages %}
+                                {% for message in messages %}
+                                    {{ message }}
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+                    </div>
+                    <div class="column">
+                        {% with messages = get_flashed_messages(category_filter=["reqtitle"]) %}
+                            <p style="font-size:40px; text-align: left; font-weight:bolder;">
+                            {% for message in messages %}
+                                {{ message }}<br>
+                            {% endfor %}
+                        {% endwith %}</p>
+                        <p style="font-size:40px; text-align: left; font-weight:normal;margin-top:-35px;">
+                        {% with messages = get_flashed_messages(category_filter=["reqartist"]) %}
+                            {% for message in messages %}
+                                {{ message }}
+                            {% endfor %}
+                        {% endwith %}
+                    </p></div>
                 </div>
-                <div class="column">
-                    {% with messages = get_flashed_messages(category_filter=["reqtitle"]) %}
-                    <p style="font-size:40px; text-align: left; font-weight:bolder;">
-                    {% for message in messages %}
-                        {{ message }}<br>
-                    {% endfor %}
-                    {% endwith %}</p>
-                    <p style="font-size:40px; text-align: left; font-weight:normal;margin-top:-35px;">
-                    {% with messages = get_flashed_messages(category_filter=["reqartist"]) %}
+
+                <p style="font-size:16px;text-align:left; margin-bottom: -8px;margin-left: 5px; font-weight: 900;">Your Recommendations</p><hr>
+                <div class="scrollmenu">
+                {% with messages = get_flashed_messages(category_filter=["art"]) %}
                     {% for message in messages %}
                         {{ message }}
+                    {% endfor %}
+                {% endwith %} <br>
+                <p class="small">
+                {% with messages = get_flashed_messages(category_filter=["songtitle"]) %}
+                    {% for message in messages %}
+                        <tbox>{{ message }}</tbox>
+                    {% endfor %}
+                {% endwith %} <br>
+                {% with messages = get_flashed_messages(category_filter=["songartist"]) %}
+                    {% for message in messages %}
+                        <abox>{{ message }}</abox>
                     {% endfor %}
                     {% endwith %}
                 </p></div>

@@ -8,6 +8,7 @@ rbox {
     margin-right: auto;
     margin-top: 0px;
 }
+
 tbox {
     text-align: left;
     font-size:15px;
@@ -26,6 +27,7 @@ abox {
     margin-left: 7px;
     margin-top: -30px;
 }
+
 ul {
     list-style-type: none;
     margin: 0;
@@ -51,6 +53,7 @@ body{
 * {
     box-sizing: border-box;
 }
+
 /* Create three equal columns that floats next to each other */
 .column {
     float:left;
@@ -61,19 +64,22 @@ body{
 
 /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
-.column {
-    width: 100%;
+    .column {
+        width: 100%;
+    }
 }
-}
+
 /* Clear floats after the columns */
 .row:after {
     content: "";
     display: table;
     clear: both;
 }
+
 .centered-and-cropped {
     object-fit: cover;
 }
+
 audio.req {
     width: 250px;
 }
