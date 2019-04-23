@@ -1,11 +1,16 @@
 sbox {
     text-align: center;
-    width: 450px;
-    padding: 15px;
-    border: 5px solid #C0C0C0;
+    width: 410px;
+    padding: 0px;
     display: block;
     margin-left: auto;
     margin-right: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
 }
 
 a:link {
@@ -18,6 +23,32 @@ a:hover {
     text-decoration: none;
 }
 
+a:visited 
+{
+    text-decoration: none; 
+    color: #C0C0C0;
+}
+
 div.a {
     text-indent: 30px;
+}
+
+body{
+    font-family: 'Muli', sans-serif;
+    font-weight:bolder;
+}
+
+input {
+    width: 400px;
+    padding: 10px 15px;
+    font-size:14px;
+    border: 2px solid lightgrey;
+    border-radius:20px;
+    margin-top:12px;
+    margin-left:10px;
+    display: block;
+}
+
+input:focus, textarea {
+    outline: none !important;
 }

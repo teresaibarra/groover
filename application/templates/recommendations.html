@@ -8,10 +8,10 @@
         <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/recommendations.css') }}">
+        <link rel="icon" type="image/png" href="{{ url_for('static', filename='css/ruby_doo.png') }}">
     </head>
 
     <body>
-        <a href="/" style="margin-left: 80px"><button style="font-size: 13px; border-radius: 24px; margin-top: 90px">&#x21BB; Groove Again!</button></a>
         <rbox>
             <ul>
                 <div class="row">
@@ -65,17 +65,42 @@
                     {% for message in messages %}
                         <abox>{{ message }}</abox>
                     {% endfor %}
-                {% endwith %} </p>
-                <br>
-                <!--
-                {% with messages = get_flashed_messages(category_filter=["preview"]) %}
-                {% for message in messages %}
-                    <abox>{{ message }}</abox>
-                {% endfor %}
-                {% endwith %}
-                -->
-                </div>
+                    {% endwith %}
+                </p></div>
+            </div>
+
+            <p style="font-size:16px;text-align:left; margin-bottom: -8px;margin-left: 5px; font-weight: 900; margin-top:0px">Your Recommendations</p>
+            <p style="font-size:20px;text-align:right; margin-top:-25px; margin-bottom: -8px;margin-left: 5px; font-weight: 900;"> &raquo;
+            </p>
+            <hr>
+            <div class="scrollmenu">
+            {% with messages = get_flashed_messages(category_filter=["art"]) %}
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+            {% endwith %} <br>
+            <p class="small">
+            {% with messages = get_flashed_messages(category_filter=["songtitle"]) %}
+            {% for message in messages %}
+                <tbox>{{ message }}</tbox>
+            {% endfor %}
+            {% endwith %} <br>
+            {% with messages = get_flashed_messages(category_filter=["songartist"]) %}
+            {% for message in messages %}
+                <abox>{{ message }}</abox>
+            {% endfor %}
+            {% endwith %} </p>
+            <br>
+            <!--
+            {% with messages = get_flashed_messages(category_filter=["preview"]) %}
+            {% for message in messages %}
+                <abox>{{ message }}</abox>
+            {% endfor %}
+            {% endwith %}
+            -->
+            </div>
             </ul>
+            <a href="/"><button style="font-size: 14px; border-radius: 24px; outline:none; margin-top:-15px">&#x21BB; Groove Again!</button></a>
         </rbox>
     </body>
 </html>
