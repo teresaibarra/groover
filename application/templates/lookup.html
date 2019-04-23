@@ -2,21 +2,20 @@
 {% block content %}
 <br>
     <sbox><br>
-    <form action="" method="post" autocomplete="off" novalidate>
-        {{ form.hidden_tag() }}
-        <p style = "text-align: left;margin-left: 55px; margin-bottom: -0.5px";>
-            <b>{{ form.artist.label }}</b><br>
-        </p>
-            {{ form.artist(size=55) }}
-        <p style = "text-align: left;margin-left: 55px; margin-bottom: -0.5px";>
-            <b>{{ form.title.label }}</b><br>
-        </p>
-            {{ form.title(size=55) }}
-        <p style = "text-align: right; margin-right: 55px">
-            {{ form.submit(style=" font-weight: bold; font-size:16px;") }}<br>
-            <a href="/about" style="font-size: 12px; margin-top: 10px">ⓘ  How does this work?</a>
-        </p>
-    </form>
+        <form action="" method="post" autocomplete="off" novalidate>
+            {{ form.hidden_tag() }}
+            <p style = "text-align: left;margin-left: 55px; margin-bottom: -0.5px";>
+                <b>{{ form.artist.label }}</b><br>
+            </p>
+                {{ form.artist(size=55) }}
+            <p style = "text-align: left;margin-left: 55px; margin-bottom: -0.5px";>
+                <b>{{ form.title.label }}</b><br>
+            </p>
+                {{ form.title(size=55) }}
+            <p style = "text-align: right; margin-right: 55px">
+                {{ form.submit(style=" font-weight: bold; font-size:16px;") }}<br>
+                <a href="/about" style="font-size: 12px; margin-top: 10px">ⓘ  How does this work?</a>
+            </p>
+        </form>
     </sbox>
-    
 {% endblock %}

@@ -1,12 +1,13 @@
 <html>
     <head>
         {% if title %}
-        <title>{{ title }} - Groover</title>
+            <title>{{ title }} - Groover</title>
         {% else %}
-        <title>Groover</title>
+            <title>Groover</title>
         {% endif %}
         <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     </head>
+    
     <body>
         <div>
             <br><br>
@@ -14,15 +15,14 @@
             <p style="text-align: center;  margin-left: 53px"><i>smarter music recommendations</i></p>
         </div>
         {% with messages = get_flashed_messages() %}
-        {% if messages %}
-        <ul>
-            {% for message in messages %}
-            <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
+            {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
         {% endwith %}
         {% block content %}{% endblock %}
-
     </body>
 </html>
