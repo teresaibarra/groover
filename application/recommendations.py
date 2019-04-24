@@ -22,6 +22,7 @@ class Recommendation:
         self.album_image_url = None
         self.preview_url = None
         self.recommendations = None
+        self.spotify_url = None
 
     def get_musixmatch_api_url(self, url):
         return 'http://api.musixmatch.com/ws/1.1/{}&format=json&apikey={}'.format(url, os.getenv("MUSIX_API_KEY"))
@@ -51,6 +52,7 @@ class Recommendation:
             track = results['tracks']['items'][0]
             self.album_image_url = track["album"]["images"][1]["url"]
             self.preview_url = track["preview_url"]
+            self.spotify_url = track['external_urls']['spotify']
 
             return True
         else:
@@ -95,6 +97,9 @@ class Recommendation:
 
     def get_preview_url(self):
         return self.preview_url
+
+    def get_spotify_url(self):
+        return self.spotify_url
 
     def get_recommendations(self):
         return self.recommendations
