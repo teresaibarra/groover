@@ -69,7 +69,7 @@ class Recommendation:
         v1 = model.infer_vector(doc_words=test_data, alpha=0.025, min_alpha=0.001, steps=55)
         # this returns a list of tuples -- the first element of the tuple is
         # its index in the song_data list
-        list_of_tuples = model.docvecs.most_similar(positive=[v1])
+        list_of_tuples = model.docvecs.most_similar(positive=[v1], topn=20)
 
         recommendations = []
         with open('data/song_data.json') as json_file:
