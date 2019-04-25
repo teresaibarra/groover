@@ -10,55 +10,28 @@
                     <p style="font-size:30px; text-align:left; margin-left: 40px; margin-top:50px">Based on the<br>lyrical content of</p><br><br>
                 </div>
                 <div class="column">
-                    {% with messages = get_flashed_messages(category_filter=["reqart"]) %}
-                        {% for message in messages %}
-                            {{ message }}
-                        {% endfor %}
-                    {% endwith %}
-                    {% with messages = get_flashed_messages(category_filter=["reqpreview"]) %}
-                        {% if messages %}
-                            {% for message in messages %}
-                                {{ message }}
-                            {% endfor %}
-                        {% endif %}
-                    {% endwith %}
+                    <img src="{{ rec.get_album_image_url() }}" class='centered-and-cropped' style='width:230px; height:230px;' />
+                    <audio controls class='req' src="{{ rec.get_preview_url() }}" />
+
                 </div>
                 <div class="column">
-                    {% with messages = get_flashed_messages(category_filter=["reqtitle"]) %}
-                        <p style="font-size:40px; text-align: left; font-weight:bolder;">
-                        {% for message in messages %}
-                            {{ message }}<br>
-                        {% endfor %}
-                    {% endwith %}</p>
-                    <p style="font-size:40px; text-align: left; font-weight:normal;margin-top:-35px;">
-                    {% with messages = get_flashed_messages(category_filter=["reqartist"]) %}
-                        {% for message in messages %}
-                            {{ message }}
-                        {% endfor %}
-                    {% endwith %}
-                </p></div>
+                    <p style="font-size:40px; text-align: left; font-weight:bolder;">{{ rec.get_song_title() }}<br></p>
+                    <p style="font-size:40px; text-align: left; font-weight:normal;margin-top:-35px;">by {{ rec.get_artist() }}</p>
+                </div>
             </div>
 
             <p style="font-size:16px;text-align:left; margin-bottom: -8px;margin-left: 5px; font-weight: 900;">Your Recommendations</p><hr>
             <div class="scrollmenu">
-            {% with messages = get_flashed_messages(category_filter=["art"]) %}
-                {% for message in messages %}
-                    {{ message }}
+                {% for song in rec.get_recommendations() %}
+                    {% if((song['name'] == rec.get_song_title() and song['artist']== rec.get_artist())==False): %}
+                        <img src='{{ song['image_url'] }}' class='centered-and-cropped' style='width:215px;height:215px;' hspace='7'/>  <br>
+                    {% endif %}
+                <p class="small">
+                        <tbox>{{ song['name'] }}</tbox> <br>
+                        <abox>{{ song['artist'] }}</abox>
+                </p>
                 {% endfor %}
-            {% endwith %} <br>
-            <p class="small">
-            {% with messages = get_flashed_messages(category_filter=["songtitle"]) %}
-                {% for message in messages %}
-                    <tbox>{{ message }}</tbox>
-                {% endfor %}
-            {% endwith %} <br>
-            {% with messages = get_flashed_messages(category_filter=["songartist"]) %}
-                {% for message in messages %}
-                    <abox>{{ message }}</abox>
-                {% endfor %}
-                {% endwith %}
-            </p></div>
-        </div>
+            </div>
         </ul>
         <a href="/"><button style="font-size: 14px; border-radius: 24px; outline:none; margin-top:-15px">&#x21BB; Groove Again!</button></a>
     </rbox>
