@@ -1,36 +1,48 @@
 {% extends "base.html" %}
 {% block head %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/recommendations.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.min.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.theme.default.min.css') }}" />
 {% endblock %}
 {% block content %}
-    <rbox>
-        <ul>
-            <div class="row">
-                <div class="column">
-                    <p style="font-size:30px; text-align:left; margin-left: 40px; margin-top:50px">Based on the<br>lyrical content of</p><br><br>
-                </div>
-                <div class="column">
-                    <img src="{{ rec.get_album_image_url() }}" class='centered-and-cropped' style='width:230px; height:230px;' />
-                    <audio controls class='req' src="{{ rec.get_preview_url() }}" />
+    <div class="container main">
+      <div class="container header">
+        <h1>Groover</h1>
+        <a href="/"><button>&#x21BB; Groove Again!</button></a>
+      </div>
+      <div class="container request">
+        <p>Based on the<br>lyrical content of</p>
 
-                </div>
-                <div class="column">
-                    <p style="font-size:40px; text-align: left; font-weight:bolder;">{{ rec.get_song_title() }}<br></p>
-                    <p style="font-size:40px; text-align: left; font-weight:normal;margin-top:-35px;">by {{ rec.get_artist() }}</p>
-                </div>
-            </div>
+        <div class="container req-album">
+          <img src="{{ rec.get_album_image_url() }}" />
+          <audio controls src="{{ rec.get_preview_url() }}"></audio>
+        </div>
 
-            <p style="font-size:16px;text-align:left; margin-bottom: -8px;margin-left: 5px; font-weight: 900;">Your Recommendations</p><hr>
-            <div class="scrollmenu">
-                {% for song in rec.get_recommendations() %}
-                    <img src='{{ song['image_url'] }}' class='centered-and-cropped' style='width:215px;height:215px;' hspace='7'/>  <br>
-                    <p class="small">
-                            <tbox>{{ song['name'] }}</tbox> <br>
-                            <abox>{{ song['artist'] }}</abox>
-                    </p>
-                {% endfor %}
-            </div>
-        </ul>
-        <a href="/"><button style="font-size: 14px; border-radius: 24px; outline:none; margin-top:-15px">&#x21BB; Groove Again!</button></a>
-    </rbox>
+        <div class="container col">
+          <p>{{ rec.get_song_title() }}<br>by {{ rec.get_artist() }}</p>
+        </div>
+      </div>
+
+
+      <div class="owl-container container">
+        <p>Your Recommendations</p>
+        <div class="owl-carousel owl-theme">
+            {% for song in rec.get_recommendations() %}
+                <div class="recs">
+                  <img src='{{ song["image_url"] }}' /> <br>
+                  <p>{{ song['name'] }} <br>{{ song['artist'] }}</p>
+                </div>
+            {% endfor %}
+        </div>
+      </div>
+
+
+    </div>
+
+
+  <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/owl.carousel.min.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/carousel.config.js') }}"></script>
+
 {% endblock %}
