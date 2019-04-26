@@ -1,99 +1,59 @@
-rbox {
-    text-align: center;
-    width: 900px;
-    padding: 0px;
-    border: 5px solid #ffffff;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 0px;
+h1 {
+  margin: 0;
 }
 
-tbox {
-    text-align: left;
-    font-size:15px;
-    width: 222px;
-    word-wrap: break-word;
-    white-space:normal;
-    display: inline-block;
-    margin-left: 7px;
+.container {
+  display: flex;
 }
 
-abox {
-    text-align: left;
-    font-size:12px;
-    width: 222px;
-    display: inline-block;
-    margin-left: 7px;
-    margin-top: -30px;
+.main {
+  flex-direction: column;
+  justify-content: center;
 }
 
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    display: block;
-    text-align: center;
-    padding: 10px;
-    text-decoration: none;
+.owl-carousel {
+  /* width: 70%; */
+  justify-content: center;
 }
 
-li {
-    float: left;
-    z-index: -1;
-    position: relative;
+.owl-carousel img {
+  height:35%;
+  /* width: 170px; */
+  object-fit: cover;
 }
 
-body{
-    font-family: 'Muli', sans-serif;
-    font-weight:bolder;
+.request {
+  justify-content: space-evenly;
+  align-items: center;
 }
 
-* {
-    box-sizing: border-box;
+.request img {
+  height: 30%;
 }
 
-/* Create three equal columns that floats next to each other */
-.column {
-    float:left;
-    width: 33.33%;
-    padding: 10px;
-    vertical-align: middle;
+.header {
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
-/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 600px) {
-    .column {
-        width: 100%;
-    }
+.req-album {
+  align-items: center;
+  flex-direction: column;
 }
 
-/* Clear floats after the columns */
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
+.owl-container {
+  /* width: 70%; */
+  padding-left: 10%;
+  padding-right: 10%;
+  flex-direction: column;
 }
 
-.centered-and-cropped {
-    object-fit: cover;
+audio {
+  width: 100%;
 }
 
-audio.req {
-    width: 250px;
-}
-
-audio.rec {
-    width: 222px;
-    margin-left:-7px;
-}
-
-div.scrollmenu {
-    overflow: auto;
-    white-space: nowrap;
-}
-
-p.small {
-    line-height: 0.8;
+p {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }

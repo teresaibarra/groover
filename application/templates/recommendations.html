@@ -31,6 +31,9 @@
                 <div class="recs">
                   <img src='{{ song["image_url"] }}' /> <br>
                   <p>{{ song['name'] }} <br>{{ song['artist'] }}</p>
+                  {% if song["preview_url"] %}
+                    <audio controls src='{{ song["preview_url"] }}'></audio>
+                  {% endif %}
                 </div>
             {% endfor %}
         </div>
