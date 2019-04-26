@@ -75,7 +75,9 @@ class Recommendation:
         with open('data/song_data.json') as json_file:
             song_data = json.load(json_file)
             for ranking_tuple in list_of_tuples:
-                recommendations.append(song_data[int(ranking_tuple[0])])
+                song = song_data[int(ranking_tuple[0])]
+                if song['name'] != self.get_song_title():
+                    recommendations.append(song)
 
         self.recommendations = recommendations
         return True
