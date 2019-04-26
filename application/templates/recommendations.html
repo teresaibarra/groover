@@ -15,7 +15,6 @@
 
         <div class="container req-album">
           <img src="{{ rec.get_album_image_url() }}" />
-          <audio controls src="{{ rec.get_preview_url() }}"></audio>
         </div>
 
         <div class="container col">
@@ -29,11 +28,15 @@
         <div class="owl-carousel owl-theme">
             {% for song in rec.get_recommendations() %}
                 <div class="recs">
-                  <img src='{{ song["image_url"] }}' /> <br>
-                  <p>{{ song['name'] }} <br>{{ song['artist'] }}</p>
-                  {% if song["preview_url"] %}
-                    <audio controls src='{{ song["preview_url"] }}'></audio>
-                  {% endif %}
+                  <img src='{{ song["image_url"] }}' class="image"/> <br>
+                  <div class="overlay">
+                    <div class="text"><p>{{ song['name'] }} <br>{{ song['artist'] }}</p>
+                      {% if song["preview_url"] %}
+                        <audio controls src='{{ song["preview_url"] }}'></audio>
+                      {% endif %}
+                    </div>
+                  </div>
+
                 </div>
             {% endfor %}
         </div>
