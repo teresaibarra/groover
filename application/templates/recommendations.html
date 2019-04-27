@@ -41,7 +41,7 @@
         </div>
 
         <div class="container col">
-          <p>{{ rec.get_song_title() }}<br>by {{ rec.get_artist() }}</p>
+          <p>"{{ rec.get_song_title() }}"<br>by {{ rec.get_artist() }}</p>
         </div>
       </div>
 
@@ -54,7 +54,7 @@
                   <button onclick="on('div-{{loop.index}}')" class="image-button">
                     <img src='{{ song["image_url"] }}' class="image">
                     <div class="overlay">
-                      <div class="text"><p>{{ song['name'] }} <br>{{ song['artist'] }}</p>
+                      <div class="text"><p>{{ song['name'] }} <br><i>{{ song['artist'] }}</i></p>
                       </div>
                     </div>
                   </button>
