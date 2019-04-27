@@ -1,128 +1,135 @@
+"""This script is used to generate a model for lyrically similar songs"""
+
 # NOTE: This code is how we generated our model and is not used actively in our
 # web application -- we load the saved model in the app.
 
 # Import all the dependencies
+import csv
+import json
+
+import spotipy
+from spotipy.oauth2 import SPOTIFYClientCredentials
+
+import requests
+
 from gensim.models.doc2vec import Doc2Vec, TaggedDocument
 from nltk.tokenize import word_tokenize
-import csv
-import spotipy
-import requests
-import json
-from spotipy.oauth2 import SpotifyClientCredentials
 
-# Store a list of dictionaries in song_data, then store it in a json file
-song_data = []
-sp_tracks_not_found = 0
-sp_image_not_found = 1
-sp_artists_not_found = []
-counter = 0
+# Store a list of dictionaries in SONG_DATA, then store it in a json file
+SONG_DATA = []
+SP_TRACKS_NOT_FOUND = 0
+SP_IMAGE_NOT_FOUND = 1
+SP_ARTISTS_NOT_FOUND = []
+COUNTER = 0
 
-client_credentials_manager = SpotifyClientCredentials(client_id='SPOTIFY_CLIENT_ID', client_secret='SPOTIFY_CLIENT_SECRET')
-spotify = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
+CLIENT_CREDENTIALS_MANAGER = (SPOTIFYClientCredentials(client_id='SPOTIFY_CLIENT_ID',
+                                                       client_secret='SPOTIFY_CLIENT_SECRET'))
+SPOTIFY = spotipy.SPOTIFY(CLIENT_CREDENTIALS_MANAGER=CLIENT_CREDENTIALS_MANAGER)
 
 with open('songdata.csv') as csv_file:
-    csv_reader = csv.reader(csv_file, delimiter=',')
-    line_count = 0
-    for row in csv_reader:
-        if line_count != 0:
-            results = spotify.search(q='track:' + row[1] + ' artist:' + row[0], type='track')
+    CSV_READER = csv.reader(csv_file, delimiter=',')
+    LINE_COUNT = 0
+    for row in CSV_READER:
+        if LINE_COUNT != 0:
+            results = SPOTIFY.search(q='track:' + row[1] + ' artist:' + row[0], type='track')
             if len(results['tracks']['items']) > 0:
                 track = results['tracks']['items'][0]
-                artist_results = spotify.search(q='artist:' + row[0], type='artist')
+                artist_results = SPOTIFY.search(q='artist:' + row[0], type='artist')
 
                 song_dict = {
                     'name': track['name'],
                     'artist': track['artists'][0]['name'],
                     'lyrics': row[3].replace('\n', ' ').replace('   ', '  '),
-                    'track_on_spotify': True,
+                    'track_on_SPOTIFY': True,
                     'artist_id': track['artists'][0]['id'],
                     'genres': artist_results['artists']['items'][0]['genres'],
                     'image_url': None,
 
                     'preview_url': track['preview_url'],
-                    'spotify_id': track['id']
+                    'SPOTIFY_id': track['id']
                 }
 
                 if len(track['album']['images']) > 0:
                     song_dict['image_url'] = track['album']['images'][0]['url']
 
-                song_data.append(song_dict)
+                SONG_DATA.append(song_dict)
 
             else:
-                results = spotify.search(q='artist:' + row[0], type='artist')
+                results = SPOTIFY.search(q='artist:' + row[0], type='artist')
                 if len(results['artists']['items']) > 0:
-                    sp_tracks_not_found = sp_tracks_not_found + 1
+                    SP_TRACKS_NOT_FOUND = SP_TRACKS_NOT_FOUND + 1
 
                     song_dict = {
                         'name': row[1],
                         'artist': results['artists']['items'][0]['name'],
                         'lyrics':row[3].replace('\n', ' ').replace('   ', '  '),
-                        'track_on_spotify': False,
+                        'track_on_SPOTIFY': False,
                         'artist_id': results['artists']['items'][0]['id'],
                         'genres': results['artists']['items'][0]['genres'],
                         'image_url': None
                     }
 
                     if len(results['artists']['items'][0]['images']) > 0:
-                        sp_image_not_found = sp_image_not_found + 1
+                        SP_IMAGE_NOT_FOUND = SP_IMAGE_NOT_FOUND + 1
                         song_dict['image_url'] = results['artists']['items'][0]['images'][0]['url']
 
-                    song_data.append(song_dict)
+                    SONG_DATA.append(song_dict)
 
                 else:
                     print(row)
 
-            counter = counter + 1
-            if counter % 100 == 0:
-                print("\rReading documents: %d" % counter, end='', flush=True)
-        line_count += 1
+            COUNTER = COUNTER + 1
+            if COUNTER % 100 == 0:
+                print("\rReading documents: %d" % COUNTER, end='', flush=True)
+        LINE_COUNT += 1
 
-js = json.dumps(song_data)
-fp = open('song_data.json', 'a') #open new json file. If it does not exist, it will create one
-fp.write(js) #write to json file
-fp.close() #close the connection
+JS = json.dumps(SONG_DATA)
+FP = open('SONG_DATA.json', 'a') #open new json file. If it does not exist, it will create one
+FP.write(JS) #write to json file
+FP.close() #close the connection
 
-with open('data/song_data.json') as json_file:
-    song_data = json.load(json_file)
-    song_lyrics = []
+with open('data/SONG_DATA.json') as json_file:
+    SONG_DATA = json.load(json_file)
+    SONG_LYRICS = []
 
-    for item in song_data:
-        song_lyrics.append(item['lyrics'])
+    for item in SONG_DATA:
+        SONG_LYRICS.append(item['lyrics'])
 
-    tagged_data = [TaggedDocument(words=word_tokenize(_d.lower()), tags=[str(i)]) for i, _d in enumerate(song_lyrics)]
+    TAGGED_DATA = [TaggedDocument(words=word_tokenize(_d.lower()),
+                                  tags=[str(i)]) for i, _d in enumerate(SONG_LYRICS)]
 
-    max_epochs = 50
-    vec_size = 20
-    alpha = 0.025
+    MAX_EPOCHS = 50
+    VEC_SIZE = 20
+    ALPHA = 0.025
 
-    model = Doc2Vec(size=vec_size,
-                    alpha=alpha,
+    MODEL = Doc2Vec(size=VEC_SIZE,
+                    alpha=ALPHA,
                     min_alpha=0.00025,
                     min_count=1,
-                    dm =1)
+                    dm=1)
 
-    model.build_vocab(tagged_data)
+    MODEL.build_vocab(TAGGED_DATA)
 
-    #Train model 
-    for epoch in range(max_epochs):
+    #Train model
+    for epoch in range(MAX_EPOCHS):
         print('iteration {0}'.format(epoch))
-        model.train(tagged_data,
-                    total_examples=model.corpus_count,
-                    epochs=model.iter)
-        model.alpha -= 0.0002 #decrease the learning rate
-        model.min_alpha = model.alpha #fix the learning rate, no decay
+        MODEL.train(TAGGED_DATA,
+                    total_examples=MODEL.corpus_count,
+                    epochs=MODEL.iter)
+        MODEL.ALPHA -= 0.0002 #decrease the learning rate
+        MODEL.min_alpha = MODEL.ALPHA #fix the learning rate, no decay
 
-    model.save("d2v.model")
+    MODEL.save("d2v.model")
     print("Model Saved")
 
-    from gensim.models.doc2vec import Doc2Vec
-    model= Doc2Vec.load("d2v.model")
+    #from gensim.models.doc2vec import Doc2Vec
+    MODEL = Doc2Vec.load("d2v.model")
 
     #Use to find the vector of a document which is not in training data
-    test_data = word_tokenize("hello".lower())
-    v1 = model.infer_vector(doc_words=test_data, alpha=0.025, min_alpha=0.001, steps=55)
-    similar_v1 = model.docvecs.most_similar(positive=[v1])
+    TEST_DATA = word_tokenize("hello".lower())
+    V1 = MODEL.infer_vector(doc_words=TEST_DATA, alpha=0.025, min_alpha=0.001, steps=55)
+    SIMILAR_V1 = MODEL.docvecs.most_similar(positive=[V1])
 
-    for song in similar_v1:
-        print(song_data[int(song[0])]['name'])
-        print(song_data[int(song[0])]['artist'])
+    for song in SIMILAR_V1:
+        print(SONG_DATA[int(song[0])]['name'])
+        print(SONG_DATA[int(song[0])]['artist'])
