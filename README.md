@@ -5,7 +5,7 @@ Groover is an application that neurally generates music recommendations based on
 
 
 ## Running Locally
-To run this locally, `cd` into your project directory and  run `virtualenv venv` (you only have to do this once per install), `source venv/bin/activate`, and `pip install -r requirements.txt`. You should set your environment variables and API keys in `.env`. When you're ready, run `flask run`.
+To run this locally, first pip install flask_wtf, then `cd` into your project directory and  run `virtualenv venv` (you only have to do this once per install), `source venv/bin/activate`, and `pip install -r requirements.txt`. You should set your environment variables and API keys in `.env`. When you're ready, run `flask run`.
 
 Go to your browser and enter the address `http://127.0.0.1:5000/`.
 
