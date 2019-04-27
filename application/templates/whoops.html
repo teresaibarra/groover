@@ -1,15 +1,5 @@
-<html>
-    <head>
-        {% if title %}
-        <title>{{ title }} - Groover</title>
-        {% else %}
-        <title>Groover</title>
-        {% endif %}
-        <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-        <link rel="icon" type="image/png" href="{{ url_for('static', filename='css/ruby_doo.png') }}">
-    </head>
-    <body>
+{% extends "base.html" %}
+{% block content %}
     <sbox style="height:303px; white-space: nowrap;">
         <a href = "/"><img src="{{ url_for('static', filename='css/logo.png') }}" style="width:470px; height:110px; margin-left:-7px;"></a><br><br>
     </sbox>
@@ -23,5 +13,4 @@
         <br>
         <a href="/"><button style="font-size: 13px; border-radius: 24px; outline:none">&#x21BB; Groove Again?</button></a><br>
     </sbox>
-
-    </body>
+{% endblock %}

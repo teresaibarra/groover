@@ -22,6 +22,7 @@ class Recommendation:
         self.album_image_url = None
         self.preview_url = None
         self.recommendations = None
+        self.spotify_url = None
 
     def get_musixmatch_api_url(self, url):
         return 'http://api.musixmatch.com/ws/1.1/{}&format=json&apikey={}'.format(url, os.getenv("MUSIX_API_KEY"))
@@ -51,6 +52,7 @@ class Recommendation:
             track = results['tracks']['items'][0]
             self.album_image_url = track["album"]["images"][1]["url"]
             self.preview_url = track["preview_url"]
+            self.spotify_url = track['external_urls']['spotify']
 
             return True
         else:
@@ -67,13 +69,16 @@ class Recommendation:
         v1 = model.infer_vector(doc_words=test_data, alpha=0.025, min_alpha=0.001, steps=55)
         # this returns a list of tuples -- the first element of the tuple is
         # its index in the song_data list
-        list_of_tuples = model.docvecs.most_similar(positive=[v1])
+        list_of_tuples = model.docvecs.most_similar(positive=[v1], topn=20)
 
         recommendations = []
         with open('data/song_data.json') as json_file:
             song_data = json.load(json_file)
             for ranking_tuple in list_of_tuples:
-                recommendations.append(song_data[int(ranking_tuple[0])])
+                song = song_data[int(ranking_tuple[0])]
+                song['genres'] = [g.title() for g in song['genres']]
+                if song['name'] != self.get_song_title():
+                    recommendations.append(song)
 
         self.recommendations = recommendations
         return True
@@ -95,6 +100,9 @@ class Recommendation:
 
     def get_preview_url(self):
         return self.preview_url
+
+    def get_spotify_url(self):
+        return self.spotify_url
 
     def get_recommendations(self):
         return self.recommendations
