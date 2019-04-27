@@ -103,15 +103,14 @@ with open('data/song_data.json') as json_file:
 
     model.build_vocab(tagged_data)
 
+    #Train model 
     for epoch in range(max_epochs):
         print('iteration {0}'.format(epoch))
         model.train(tagged_data,
                     total_examples=model.corpus_count,
                     epochs=model.iter)
-        # decrease the learning rate
-        model.alpha -= 0.0002
-        # fix the learning rate, no decay
-        model.min_alpha = model.alpha
+        model.alpha -= 0.0002 #decrease the learning rate
+        model.min_alpha = model.alpha #fix the learning rate, no decay
 
     model.save("d2v.model")
     print("Model Saved")

@@ -36,22 +36,22 @@ class Recommendation:
         matched_data = json.loads(matched_res.text)
 
         if matched_data["message"]["header"]["status_code"] == 200:
-            # Get initial Musixmatch information
+            #Get initial Musixmatch information
             self.artist = matched_data["message"]["body"]["track"]["artist_name"]
             self.title = matched_data["message"]["body"]["track"]["track_name"]
             self.track_id = matched_data["message"]["body"]["track"]["track_id"]
 
-            # Make another API call for the lyrics
+            #Make another API call for the lyrics
             url = 'track.lyrics.get?track_id={}'.format(self.get_track_id())
             lyrical_res = requests.get(self.get_musixmatch_api_url(url))
             lyrical_data = json.loads(lyrical_res.text)
             self.lyrics = lyrical_data["message"]["body"]["lyrics"]["lyrics_body"].split("...")[0]
 
-            # Access Spotify API
+            #Access Spotify API
             client_credentials_manager = SpotifyClientCredentials(client_id=os.getenv("SPOTIFY_CLIENT_ID"), client_secret=os.getenv("SPOTIFY_CLIENT_SECRET"))
             spotify = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
-            # Get album art and a preview url from Spotify
+            #Get album art and a preview url from Spotify
             results = spotify.search(q='track:' + self.get_song_title() + ' artist:' + self.get_artist(), type='track')
             track = results['tracks']['items'][0]
             self.album_image_url = track["album"]["images"][1]["url"]
@@ -67,11 +67,11 @@ class Recommendation:
 
     # Determine song recommendations using model
     def load_recommendations(self):
-        # Clean lyrics for analysis
+        #Clean lyrics for analysis
         lyrics = self.get_lyrics().strip().replace('\n',' ').lower()
         lyrics = re.sub("[\(\[].*?[\)\]]", "", lyrics)
 
-        # Get most similar lysics
+        #Get most similar lysics
         model = Doc2Vec.load("data/d2v.model") #load model
         test_data = word_tokenize(lyrics)
         v1 = model.infer_vector(doc_words=test_data, alpha=0.025, min_alpha=0.001, steps=55)
@@ -79,7 +79,7 @@ class Recommendation:
         list_of_tuples = model.docvecs.most_similar(positive=[v1], topn=20)  #first element of the tuple its index in the song_data list
         recommendations = []
 
-        # Store generated song recommendations from model
+        #Store generated song recommendations from model
         with open('data/song_data.json') as json_file:
             song_data = json.load(json_file)
             for ranking_tuple in list_of_tuples:

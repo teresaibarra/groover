@@ -16,5 +16,5 @@ Python: `under_scores`
 
 ## Comments
 `# Class/Function descriptions look like this.`
-`#explanations for large code sections look like this.`
+`#Explanations for large code sections look like this.`
 `#code commentary looks like this
