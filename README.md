@@ -4,6 +4,22 @@
 Groover is an application that neurally generates music recommendations based on a song's lyrics. This was built by [Teresa Ibarra](https://github.com/teresaibarra), [Siena Guerrero](https://github.com/sienaguerrero), [Jocelyn Chen](https://github.com/jocelynyhc), [Trevor Walker](https://github.com/trevor-walker32), and [Walker Quinn](https://github.com/wsquinn) for Harvey Mudd's [Software Development](https://www.cs.hmc.edu/program/course-descriptions/) course. See it running live [here](http://www.groovermusic.net).
 
 
+## Model
+TODO: explain model
+
+## Python Script
+TODO: explain python script
+
+## JSON Files
+TODO: explain json files
+
+## Web App
+TODO: explain web app files
+
+## Demo
+TODO: include gif of web app use
+
+
 ## Running Locally
 To run this locally, first `cd` into your project directory. Install flask_wtf using `pip install flask_wtf`, then run `virtualenv venv`. You only need to perform these previous steps once per install. 
 
