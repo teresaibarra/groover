@@ -1,7 +1,7 @@
 # NOTE: This code is how we generated our model and is not used actively in our
 # web application -- we load the saved model in the app.
 
-#Import all the dependencies
+# Import all the dependencies
 from gensim.models.doc2vec import Doc2Vec, TaggedDocument
 from nltk.tokenize import word_tokenize
 import csv
@@ -10,7 +10,7 @@ import requests
 import json
 from spotipy.oauth2 import SpotifyClientCredentials
 
-# store a list of dictionaries in song_data, then store it in a json file
+# Store a list of dictionaries in song_data, then store it in a json file
 song_data = []
 sp_tracks_not_found = 0
 sp_image_not_found = 1
@@ -28,7 +28,6 @@ with open('songdata.csv') as csv_file:
             results = spotify.search(q='track:' + row[1] + ' artist:' + row[0], type='track')
             if len(results['tracks']['items']) > 0:
                 track = results['tracks']['items'][0]
-
                 artist_results = spotify.search(q='artist:' + row[0], type='artist')
 
                 song_dict = {
@@ -43,15 +42,17 @@ with open('songdata.csv') as csv_file:
                     'preview_url': track['preview_url'],
                     'spotify_id': track['id']
                 }
+
                 if len(track['album']['images']) > 0:
                     song_dict['image_url'] = track['album']['images'][0]['url']
 
                 song_data.append(song_dict)
+
             else:
                 results = spotify.search(q='artist:' + row[0], type='artist')
                 if len(results['artists']['items']) > 0:
-
                     sp_tracks_not_found = sp_tracks_not_found + 1
+
                     song_dict = {
                         'name': row[1],
                         'artist': results['artists']['items'][0]['name'],
@@ -61,13 +62,14 @@ with open('songdata.csv') as csv_file:
                         'genres': results['artists']['items'][0]['genres'],
                         'image_url': None
                     }
+
                     if len(results['artists']['items'][0]['images']) > 0:
                         sp_image_not_found = sp_image_not_found + 1
                         song_dict['image_url'] = results['artists']['items'][0]['images'][0]['url']
 
                     song_data.append(song_dict)
+
                 else:
-                    # sp_artists_not_found.append(row)
                     print(row)
 
             counter = counter + 1
@@ -76,19 +78,12 @@ with open('songdata.csv') as csv_file:
         line_count += 1
 
 js = json.dumps(song_data)
-
-# Open new json file if not exist it will create
-fp = open('song_data.json', 'a')
-
-# write to json file
-fp.write(js)
-
-# close the connection
-fp.close()
+fp = open('song_data.json', 'a') #open new json file. If it does not exist, it will create one
+fp.write(js) #write to json file
+fp.close() #close the connection
 
 with open('data/song_data.json') as json_file:
     song_data = json.load(json_file)
-
     song_lyrics = []
 
     for item in song_data:
@@ -122,9 +117,9 @@ with open('data/song_data.json') as json_file:
     print("Model Saved")
 
     from gensim.models.doc2vec import Doc2Vec
-
     model= Doc2Vec.load("d2v.model")
-    #to find the vector of a document which is not in training data
+
+    #Use to find the vector of a document which is not in training data
     test_data = word_tokenize("hello".lower())
     v1 = model.infer_vector(doc_words=test_data, alpha=0.025, min_alpha=0.001, steps=55)
     similar_v1 = model.docvecs.most_similar(positive=[v1])

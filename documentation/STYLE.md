@@ -6,6 +6,15 @@ Python
 JSON
 HTML/CSS
 
+## Spaces for Formatting
+Python: 4
+HTML/CSS: 2
+
 ## Naming Conventions
-JSON: camelCase
-Python: under_scores
+JSON: `camelCase`
+Python: `under_scores`
+
+## Comments
+`# Class/Function descriptions look like this.`
+`#explanations for large code sections look like this.`
+`#code commentary looks like this
