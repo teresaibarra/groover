@@ -19,7 +19,7 @@
               <p>
                 {{ song['name'] }} <br>by {{ song['artist'] }} <br>
                 {% if song["genres"] %}
-                  Genre: {{ ', '.join(song['genres'][:3]) }}<br>
+                  Genre(s): {{ ', '.join(song['genres'][:3]) }}<br>
                 {% endif %}
                 {% if song["spotify_id"] %}
                   <a target="_blank" href="https://open.spotify.com/track/{{song['spotify_id']}}">Spotify Link</a>
