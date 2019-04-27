@@ -5,9 +5,11 @@ Groover is an application that neurally generates music recommendations based on
 
 
 ## Running Locally
-To run this locally, first `pip install flask_wtf`, then `cd` into your project directory and  run `virtualenv venv` (you only have to do this once per install), `source venv/bin/activate`, and `pip install -r requirements.txt`. 
+To run this locally, first `cd` into your project directory. Install flask_wtf using `pip install flask_wtf`, then run `virtualenv venv`. You only need to perform these previous steps once per install. 
 
-You should set your environment variables and API keys in `.env`. `.env` should also include 'FLASK_APP = groover.py'. You will need API keys for MUSIX_API_KEY, SPOTIFY_CLIENT_ID, and SPOTIFY_CLIENT_SECRET. 
+To activate and setup the virtual environment, run `source venv/bin/activate` and `pip install -r requirements.txt`. Create a blank `.env` file.
+
+You should set your environment variables and API keys in `.env`. `.env` should include 'FLASK_APP = groover.py', and you will need API keys for MUSIX_API_KEY, SPOTIFY_CLIENT_ID, and SPOTIFY_CLIENT_SECRET. 
 
 When you're ready, run `flask run`.
 
