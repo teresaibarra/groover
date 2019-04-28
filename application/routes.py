@@ -4,6 +4,7 @@ from application.forms import LoginForm
 from application.recommendations import Recommendation
 from markupsafe import Markup, escape
 
+# Get route for song input page
 @app.route('/', methods=['GET', 'POST'])
 def lookup():
     form = LoginForm()
@@ -14,10 +15,12 @@ def lookup():
         return render_template('whoops.html', title='Input error')
     return render_template('lookup.html', title='Smarter Music Recommendations', form=form)
 
+# Get route for about page
 @app.route('/about')
 def about():
     return render_template('about.html', title='About Groover')
 
+# Get route for webpage created for specific input song
 @app.route('/recommendations/<artist>/<title>')
 def recommendations(artist, title):
     rec = Recommendation(artist, title)
