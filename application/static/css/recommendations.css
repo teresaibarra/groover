@@ -1,5 +1,10 @@
 h1 {
   margin: 0;
+  font-family: 'lena';
+}
+
+body {
+  font-family: 'rockwell';
 }
 
 .container {
@@ -12,13 +17,11 @@ h1 {
 }
 
 .owl-carousel {
-  /* width: 70%; */
   justify-content: center;
 }
 
 .owl-carousel img {
   height:35%;
-  /* width: 170px; */
   object-fit: cover;
 }
 
@@ -42,7 +45,6 @@ h1 {
 }
 
 .owl-container {
-  /* width: 70%; */
   padding-left: 10%;
   padding-right: 10%;
   flex-direction: column;
@@ -76,6 +78,7 @@ audio {
 }
 
 .text {
+  font-family: 'rockwell';
   color: white;
   font-size: 16px;
   position: absolute;

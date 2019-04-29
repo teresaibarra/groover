@@ -18,9 +18,9 @@
                 {% endif %}
               </div>
               <p>
-                {{ song['name'] }} <br>by {{ song['artist'] }} <br>
+                <b>{{ song['name'] }}</b> <br>by {{ song['artist'] }} <br>
                 {% if song["genres"] %}
-                  Genre(s): {{ ', '.join(song['genres'][:3]) }}<br>
+                  <br><b>Genre(s):</b> {{ ', '.join(song['genres'][:2]) }}<br>
                 {% endif %}
                 {% if song["spotify_id"] %}
                   <a target="_blank" href="https://open.spotify.com/track/{{song['spotify_id']}}">Spotify Link</a>
@@ -42,20 +42,20 @@
         </div>
 
         <div class="container col">
-          <p>"{{ rec.get_song_title() }}"<br>by {{ rec.get_artist() }}</p>
+          <p><b>{{ rec.get_song_title() }}</b><br>by {{ rec.get_artist() }}</p>
         </div>
       </div>
 
 
       <div class="owl-container container">
-        <p>Your Recommendations</p>
+        <p><b>Your Recommendations</b></p>
         <div class="owl-carousel owl-theme">
             {% for song in rec.get_recommendations() %}
                 <div class="recs">
                   <button onclick="on('div-{{loop.index}}')" class="image-button">
                     <img src='{{ song["image_url"] }}' class="image">
                     <div class="overlay">
-                      <div class="text"><p>{{ song['name'] }} <br><i>{{ song['artist'] }}</i></p>
+                      <div class="text"><p><b>{{ song['name'] }} </b><br>by {{ song['artist'] }}</p>
                       </div>
                     </div>
                   </button>
