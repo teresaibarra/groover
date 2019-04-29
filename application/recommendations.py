@@ -1,19 +1,24 @@
-import requests
-import json
-import os
-import spotipy
+"""Recommendation Generator"""
 import re
+import os
+import json
+import requests
+
+import spotipy
+from spotipy.oauth2 import SpotifyClientCredentials
+
+from gensim.models.doc2vec import Doc2Vec
+from nltk.tokenize import word_tokenize
+from markupsafe import Markup
 
 from flask import render_template, flash, redirect
 from application import app
 from application.forms import LoginForm
-from gensim.models.doc2vec import Doc2Vec
-from nltk.tokenize import word_tokenize
-from markupsafe import Markup
-from spotipy.oauth2 import SpotifyClientCredentials
 
-# Recommendation Generator
 class Recommendation:
+    """Recommendation object for input song"""
+    # pylint: disable=too-many-instance-attributes
+    # Eight is reasonable in this case.
     def __init__(self, artist, title):
         self.artist = artist
         self.title = title
@@ -24,14 +29,16 @@ class Recommendation:
         self.recommendations = None
         self.spotify_url = None
 
-    # Retrieve URL for song on Musixmatch
     def get_musixmatch_api_url(self, url):
-        return 'http://api.musixmatch.com/ws/1.1/{}&format=json&apikey={}'.format(url, os.getenv("MUSIX_API_KEY"))
+        """Retrieve URL for song on Musixmatch"""
+        return 'http://api.musixmatch.com/ws/1.1/{}&format=json&apikey={}'.format(
+            url, os.getenv("MUSIX_API_KEY"))
 
-    
-    # Retrieve song info from Musixmatch and Spotify
+
     def find_track_info(self):
-        url = 'matcher.track.get?q_track={}&q_artist={}'.format(self.get_song_title(), self.get_artist())
+        """Retrieve song info from Musixmatch and Spotify"""
+        url = 'matcher.track.get?q_track={}&q_artist={}'.format(
+            self.get_song_title(), self.get_artist())
         matched_res = requests.get(self.get_musixmatch_api_url(url))
         matched_data = json.loads(matched_res.text)
 
@@ -48,11 +55,14 @@ class Recommendation:
             self.lyrics = lyrical_data["message"]["body"]["lyrics"]["lyrics_body"].split("...")[0]
 
             #Access Spotify API
-            client_credentials_manager = SpotifyClientCredentials(client_id=os.getenv("SPOTIFY_CLIENT_ID"), client_secret=os.getenv("SPOTIFY_CLIENT_SECRET"))
+            client_credentials_manager = SpotifyClientCredentials(
+                client_id=os.getenv("SPOTIFY_CLIENT_ID"), client_secret=os.getenv(
+                    "SPOTIFY_CLIENT_SECRET"))
             spotify = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
             #Get album art and a preview url from Spotify
-            results = spotify.search(q='track:' + self.get_song_title() + ' artist:' + self.get_artist(), type='track')
+            results = spotify.search(
+                q='track:' + self.get_song_title() + ' artist:' + self.get_artist(), type='track')
             track = results['tracks']['items'][0]
             self.album_image_url = track["album"]["images"][1]["url"]
             self.preview_url = track["preview_url"]
@@ -65,18 +75,19 @@ class Recommendation:
             return False
 
 
-    # Determine song recommendations using model
     def load_recommendations(self):
+        """Determine song recommendations using model"""
         #Clean lyrics for analysis
-        lyrics = self.get_lyrics().strip().replace('\n',' ').lower()
+        lyrics = self.get_lyrics().strip().replace('\n', ' ').lower()
         lyrics = re.sub("[\(\[].*?[\)\]]", "", lyrics)
 
         #Get most similar lysics
         model = Doc2Vec.load("data/d2v.model") #load model
         test_data = word_tokenize(lyrics)
-        v1 = model.infer_vector(doc_words=test_data, alpha=0.025, min_alpha=0.001, steps=55)
+        v_1 = model.infer_vector(doc_words=test_data, alpha=0.025, min_alpha=0.001, steps=55)
 
-        list_of_tuples = model.docvecs.most_similar(positive=[v1], topn=20)  #first element of the tuple its index in the song_data list
+        #First element of the tuple its index in the song_data list
+        list_of_tuples = model.docvecs.most_similar(positive=[v_1], topn=20)
         recommendations = []
 
         #Store generated song recommendations from model
@@ -93,25 +104,33 @@ class Recommendation:
 
 
     def get_artist(self):
+        """Return artist"""
         return self.artist
 
     def get_song_title(self):
+        """Return song title"""
         return self.title
 
     def get_track_id(self):
+        """Return track ID"""
         return self.track_id
 
     def get_lyrics(self):
+        """Return song lyrics"""
         return self.lyrics
 
     def get_album_image_url(self):
+        """Return song album art URL"""
         return self.album_image_url
 
     def get_preview_url(self):
+        """Return song preview URL"""
         return self.preview_url
 
     def get_spotify_url(self):
+        """Return Spotify song url"""
         return self.spotify_url
 
     def get_recommendations(self):
+        """Return song recommendations"""
         return self.recommendations

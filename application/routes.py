@@ -1,12 +1,13 @@
+"""Routes for webapp"""
 from flask import render_template, flash, redirect
+from markupsafe import Markup, escape
 from application import app
 from application.forms import LoginForm
 from application.recommendations import Recommendation
-from markupsafe import Markup, escape
 
-# Get route for song input page
 @app.route('/', methods=['GET', 'POST'])
 def lookup():
+    """Get route for song input page"""
     form = LoginForm()
     if form.validate_on_submit():
         return redirect('/recommendations/' + form.artist.data + '/' +  form.title.data)
@@ -15,14 +16,14 @@ def lookup():
         return render_template('whoops.html', title='Input error')
     return render_template('lookup.html', title='Smarter Music Recommendations', form=form)
 
-# Get route for about page
 @app.route('/about')
 def about():
+    """Get route for about page"""
     return render_template('about.html', title='About Groover')
 
-# Get route for webpage created for specific input song
 @app.route('/recommendations/<artist>/<title>')
 def recommendations(artist, title):
+    """Get route for webpage created for specific input song"""
     rec = Recommendation(artist, title)
     if rec.find_track_info():
         rec.load_recommendations()
