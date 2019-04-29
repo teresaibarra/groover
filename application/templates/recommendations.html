@@ -11,7 +11,7 @@
         <div id="full-overlay-content">
           {% for song in rec.get_recommendations() %}
             <div id="div-{{loop.index}}" class="overlay-box container" style="display:none;">
-              <div style="width:40%">
+              <div class="image-preview">
                 <img src='{{ song["image_url"] }}' class="image">
                 {% if song["preview_url"] %}
                   <audio controls src='{{ song["preview_url"] }}'></audio>

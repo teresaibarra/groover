@@ -60,6 +60,13 @@ audio {
   height: auto;
 }
 
+.image-preview {
+  width: 40%;
+  margin: 30px;
+  max-height: 100%;
+  overflow: hidden;
+}
+
 .overlay {
   position: absolute;
   top: 0;
@@ -112,6 +119,10 @@ p {
 }
 
 #full-overlay-content{
+  display: flex;
+  width: 70%;
+  height: 70%;
+  background-color: white;
   position: absolute;
   top: 50%;
   left: 50%;
