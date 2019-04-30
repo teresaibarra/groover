@@ -1,20 +1,3 @@
-@font-face {
-    font-family: lena;
-    src: url('/static/fonts/lena-webfont.woff');
-}
-
-@font-face {
-    font-family: rockwell;
-    src: url('/static/fonts/rockwell.ttf');
-}
-
-@font-face {
-    font-family: rockwell;
-    src: url('/static/fonts/rockwell-bold.ttf');
-    font-weight: bold;
-}
-
-
 sbox {
     text-align: center;
     width: 410px;

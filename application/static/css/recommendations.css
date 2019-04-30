@@ -1,10 +1,10 @@
 h1 {
   margin: 20px;
-  font-family: 'lena';
+  font-family: 'Raleway', sans-serif;
 }
 
 body {
-  font-family: 'rockwell';
+  font-family: 'Lato', sans-serif;
 }
 
 .again {
@@ -98,7 +98,6 @@ audio {
 }
 
 .text {
-  font-family: 'rockwell';
   color: white;
   font-size: 16px;
   position: absolute;
