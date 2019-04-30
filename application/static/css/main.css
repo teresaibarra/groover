@@ -8,9 +8,9 @@ a:hover {
     text-decoration: none;
 }
 
-a:visited 
+a:visited
 {
-    text-decoration: none; 
+    text-decoration: none;
     color: #C0C0C0;
 }
 
@@ -19,8 +19,7 @@ div.a {
 }
 
 body{
-    font-family: 'Muli', sans-serif;
-    font-weight:bolder;
+    font-family: 'rockwell';
 }
 
 input {
