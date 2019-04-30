@@ -1,5 +1,19 @@
 h1 {
-  margin: 0;
+  margin: 20px;
+  font-family: 'lena';
+}
+
+body {
+  font-family: 'rockwell';
+}
+
+.again {
+  margin: 20px;
+  border: 2px solid lightgrey;
+  width: 140px;
+  padding: 6px 8px;
+  font-size: 14px;
+  border-radius: 20px;
 }
 
 .container {
@@ -12,18 +26,16 @@ h1 {
 }
 
 .owl-carousel {
-  /* width: 70%; */
   justify-content: center;
 }
 
 .owl-carousel img {
   height:35%;
-  /* width: 170px; */
   object-fit: cover;
 }
 
 .request {
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
 }
 
@@ -39,10 +51,12 @@ h1 {
 .req-album {
   align-items: center;
   flex-direction: column;
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-bottom: 30px;
 }
 
 .owl-container {
-  /* width: 70%; */
   padding-left: 10%;
   padding-right: 10%;
   flex-direction: column;
@@ -58,15 +72,23 @@ audio {
   height: auto;
 }
 
+.image-preview {
+  width: 40%;
+  margin: 30px;
+  max-height: 100%;
+  overflow: hidden;
+}
+
 .overlay {
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 93%;
-  width: 100%;
+  height: inherit;
+  width: inherit;
   opacity: 0;
+  margin: 1px 7px 2px;
   transition: .5s ease;
   background-color: #008CBA;
 }
@@ -76,6 +98,7 @@ audio {
 }
 
 .text {
+  font-family: 'rockwell';
   color: white;
   font-size: 16px;
   position: absolute;
@@ -109,6 +132,10 @@ p {
 }
 
 #full-overlay-content{
+  display: flex;
+  width: 70%;
+  height: 70%;
+  background-color: white;
   position: absolute;
   top: 50%;
   left: 50%;

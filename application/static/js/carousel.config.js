@@ -9,17 +9,20 @@ $(document).ready(function(){
       margin: 20,
       responsiveClass:true,
       responsive:{
-          300:{
+          0:{
+              items:1,
+              dots:true,
+              nav:false
+          },
+          500:{
               items:2,
               dots:true,
               nav:false
           },
-          700:{
-              items:3,
-              dots:true,
-              nav:false
+          900:{
+              items:3
           },
-          1000:{
+          1100:{
               items:4
           }
       }
