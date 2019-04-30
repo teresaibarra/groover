@@ -1,8 +1,11 @@
-from flask import Flask
+"""
+initializes groover using the Flask library.
+
+"""
 import os
-
-app = Flask(__name__)
-SECRET_KEY = os.urandom(32)
-app.config['SECRET_KEY'] = SECRET_KEY
-
+from flask import Flask
 from application import routes
+
+APP = Flask(__name__)
+SECRET_KEY = os.urandom(32)
+APP.config['SECRET_KEY'] = SECRET_KEY
