@@ -68,13 +68,16 @@ class Recommendation:
             #Get album art and a preview url from Spotify
             results = spotify.search(q='track:' + self.get_song_title() + \
             ' artist:' + self.get_artist(), type='track')
-            track = results['tracks']['items'][0]
-            self.album_image_url = track["album"]["images"][1]["url"]
-            self.preview_url = track["preview_url"]
-            self.spotify_url = track['external_urls']['spotify']
+            try:
+                track = results['tracks']['items'][0]
+                self.album_image_url = track["album"]["images"][1]["url"]
+                self.preview_url = track["preview_url"]
+                self.spotify_url = track['external_urls']['spotify']
 
-            return True
-
+                return True
+            except:
+                print('Track not found.')
+                return False
         print('Track not found.')
         return False
 
