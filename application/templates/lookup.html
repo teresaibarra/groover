@@ -16,7 +16,8 @@
             {{ form.title(placeholder='Enter song title') }} </div>
             <div class="container item">
             <div class="container submit">
-            <div class="container item">
+              <div class="lds-facebook" id="loading"><div></div><div></div><div></div></div>
+            <div class="container item" id="submit-div" onclick="submit()">
             {{ form.submit() }} </div>
             <div class="container item">
             <a href="/about" class="about">  ⓘ How does this work?</a>
@@ -25,4 +26,6 @@
         </div>
     </form>
 </div>
+
+<script type="text/javascript" src="{{ url_for('static', filename='js/loading.js') }}"></script>
 {% endblock %}
