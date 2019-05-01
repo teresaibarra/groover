@@ -3,18 +3,27 @@
 ## About
 Groover is an application that neurally generates music recommendations based on a song's lyrics. This was built by [Teresa Ibarra](https://github.com/teresaibarra), [Siena Guerrero](https://github.com/sienaguerrero), [Jocelyn Chen](https://github.com/jocelynyhc), [Trevor Walker](https://github.com/trevor-walker32), and [Walker Quinn](https://github.com/wsquinn) for Harvey Mudd's [Software Development](https://www.cs.hmc.edu/program/course-descriptions/) course. See it running live [here](http://www.groovermusic.net).
 
-
 ## Model
-TODO: explain model
+Our model was built with a Gensim Doc2Vec model and its similarity ranking capabilities. Gensim is a Python library used
+for topic modelling and Doc2Vec is a class within Gensim that modifies the word2vec algorithm to create a representation of
+large blocks of text (or documents) in vector form. In this case, we pass in song lyrics as a document. We first train our model in Python with a database of lyrics of 57,000 songs with 50 epochs. We then infer the vector of a new input song’s lyrics, and then find vectors within our database that are the most similar. We then find the songs that correspond with the most similar vectors, resulting in a list of songs with the most similar lyrics to our input song.
+There is no way to concretely test the performance of the model. However, we have found that if we query a song that is
+already in our database, the same song is returned as the most similar result. This is expected because the lyrics should still be the same.
 
 ## Python Script
 TODO: explain python script
+Our architecture uses Python scripting to communicate with Spotify and Musixmatch’s API, as well as communicating with
+our document similarity model and our song database.
 
 ## JSON Files
-TODO: explain json files
+We stored our model as a JSON because this is a static application that does not require any changes to the
+database. Therefore, it was easier to store our database as a JSON file, which would then be loaded when needed.
 
 ## Web App
-TODO: explain web app files
+We found that it was easiest to deploy our application with Heroku instead of manually setting up with Amazon
+Web Services. We had spent several weeks attempting to set up our server on EC2, but struggled to connect this with Github.
+Heroku has automatic deployments to our website once a change was pushed to our master branch on Github, which greatly
+simplified our deployment process. Our heroku app can be directly accessed at http://cs121-groover.herokuapp.com.
 
 ## Demo
 TODO: include gif of web app use
