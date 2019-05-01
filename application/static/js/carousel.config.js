@@ -3,7 +3,7 @@ $(document).ready(function(){
       items: 4,
       loop: true,
       nav: true,
-      navText: ['<<','>>'],
+      navText: ['←','→'],
       slideBy: 4,
       dots: false,
       margin: 20,

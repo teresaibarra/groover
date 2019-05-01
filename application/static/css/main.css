@@ -109,17 +109,30 @@ h2 {
     margin-bottom: 5px;
 }
 
+#submit:active {
+  background-color: #3B4077;
+  border: 2px solid #3B4077;
+}
+
 #again {
     width: 135px;
     height: 45px;
     border: 2px solid #5157A3;
     font-size: 14px;
-    border-radius: 18px;
+    border-radius: 12px;
     box-shadow: 2px 2px #3B4077;
     background-color: #5157A3;
     color: white;
 }
 
+#again:active {
+  background-color: #3B4077;
+  border: 2px solid #3B4077;
+}
+
+#again:focus {
+  outline: none;
+}
 
 .title {
     justify-content: flex-start;

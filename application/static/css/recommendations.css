@@ -13,13 +13,23 @@ body {
 
 .again {
   margin: 20px;
-  border: 2px solid #D14343;
+  border: 2px solid #FF5151;
+  box-shadow: 2px 2px #D14343;
   width: 140px;
   padding: 6px 8px;
   font-size: 14px;
-  border-radius: 18px;
+  border-radius: 12px;
   background-color: #FF5151;
   color: white;
+}
+
+.again:active {
+  background-color: #D14343;
+  border: 2px solid #D14343;
+}
+
+.again:focus {
+  outline: none;
 }
 
 .container {
@@ -137,6 +147,7 @@ p {
 }
 
 #full-overlay-content{
+  border-radius: 12px;
   display: flex;
   width: 70%;
   height: 70%;
@@ -155,7 +166,6 @@ p {
 }
 
 .overlay-box {
-  background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -38,7 +38,7 @@ def about():
     This will send the user to our about page, with a link
     to our GitHub
     """
-    return render_template('about.html', title='About Groover')
+    return render_template('about.html', title='About')
 
 @app.route('/recommendations/<artist>/<title>')
 def recommendations(artist, title):
