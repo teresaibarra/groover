@@ -5,15 +5,20 @@ h1 {
 
 body {
   font-family: 'Lato', sans-serif;
+  background-color: #5157A3; /* For browsers that do not support gradients */
+  background-image: linear-gradient(to bottom left, #5157A3, #FF5151); /* Standard syntax (must be last) */
+  color: white;
 }
 
 .again {
   margin: 20px;
-  border: 2px solid lightgrey;
+  border: 2px solid #D14343;
   width: 140px;
   padding: 6px 8px;
   font-size: 14px;
   border-radius: 20px;
+  background-color: #FF5151;
+  color: white;
 }
 
 .container {
@@ -90,7 +95,7 @@ audio {
   opacity: 0;
   margin: 1px 7px 2px;
   transition: .5s ease;
-  background-color: #008CBA;
+  background-color: #F6AE2D;
 }
 
 .recs:hover .overlay {
@@ -145,7 +150,7 @@ p {
 
 .image-button {
   border: none;
-  background-color: none;
+  background-color: transparent;
 }
 
 .overlay-box {
