@@ -98,12 +98,6 @@ h2 {
     justify-content: space-around;
 }
 
-.about {
-    font-size: 11px;
-    color: white;
-    padding-left: 8px;
-}
-
 #submit {
     width: 90px;
     border: 2px solid #5157A3;
@@ -129,9 +123,16 @@ h2 {
 .title {
     justify-content: flex-start;
     flex-direction: column;
+    color: white;
 }
 
 .headphones {
     height: 90px;
     margin-right: 20px;
+}
+
+.title-box {
+    flex-direction: row;
+    display: flex;
+    color: white;
 }

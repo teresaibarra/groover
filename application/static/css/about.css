@@ -4,3 +4,21 @@ h3, h4 {
     margin-bottom: 0;
     padding-bottom: 0;
 }
+
+p {
+    font-size: 14px;
+    text-align: left;
+}
+
+.about {
+  width: 60%;
+  align-items: center;
+}
+
+.about-text {
+  padding: 20px;
+}
+
+.ruby {
+  width: 100%;
+}
