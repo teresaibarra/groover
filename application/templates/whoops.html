@@ -1,16 +1,19 @@
 {% extends "base.html" %}
 {% block content %}
-    <sbox style="height:303px; white-space: nowrap;">
-        <a href = "/"><img src="{{ url_for('static', filename='css/logo.png') }}" style="width:470px; height:110px; margin-left:-7px;"></a><br><br>
-    </sbox>
-    <sbox style="width:800px">
-        <br><br><br>
-        {% with messages = get_flashed_messages(category_filter=["error"]) %}
-        {% for message in messages %}
-            <h3>{{ message }}</h3>
-        {% endfor %}
-        {% endwith %}
-        <br>
-        <a href="/"><button style="font-size: 13px; border-radius: 24px; outline:none">&#x21BB; Groove Again?</button></a><br>
-    </sbox>
+<div class="container lookup">
+    <div class="container">
+        <a href = "/"><img class="headphones" src="{{ url_for('static', filename='headphones.png') }}"></a>
+        <div class="container title">
+            <h1>Groover</h1>
+            <h2>smarter music recommendations</h2>
+        </div>
+    </div>
+    <div class="container search">
+    <div class="container item">
+      {% with messages = get_flashed_messages(category_filter=["error"]) %}
+      {% for message in messages %}
+          <h3>{{ message }}</h3>
+      {% endfor %}
+      {% endwith %}
+      <a href="/" ><button id="again" >&#x21BB; Groove Again?</button></a><br>
 {% endblock %}

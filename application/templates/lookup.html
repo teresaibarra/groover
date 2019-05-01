@@ -1,19 +1,25 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="container lookup">
-            <a href = "/"><img src="{{ url_for('static', filename='css/logo.png') }}" style="width:470px; height:110px; margin-left:70px;"></a>
+    <div class="container">
+        <a href = "/"><img class="headphones" src="{{ url_for('static', filename='headphones.png') }}"></a>
+        <div class="container title">
+            <h1>Groover</h1>
+            <h2>smarter music recommendations</h2>
+        </div>
+    </div>
     <div class="container search">
     <div class="container item">
-    <form action="" method="post" autocomplete="off" style = "margin-top: -25px" novalidate>
+    <form action="" method="post" autocomplete="off" novalidate>
         {{ form.hidden_tag() }}
             {{ form.artist(placeholder='Enter artist name') }}
             {{ form.title(placeholder='Enter song title') }} </div>
             <div class="container item">
-            <div class="container submit" style="margin-left:12px">
+            <div class="container submit">
             <div class="container item">
-            {{ form.submit(style="width:80px; padding: 6px 8px; font-size:14px;") }} </div>
+            {{ form.submit() }} </div>
             <div class="container item">
-            <a href="/about" style="font-size: 12px;">ⓘ  How does this work?</a>
+            <a href="/about" class="about">  ⓘ How does this work?</a>
             </div>
         </div>
         </div>

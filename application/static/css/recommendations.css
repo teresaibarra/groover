@@ -1,6 +1,7 @@
 h1 {
-  margin: 20px;
   font-family: 'Raleway', sans-serif;
+  margin: 0;
+  color: white;
 }
 
 body {
@@ -16,7 +17,7 @@ body {
   width: 140px;
   padding: 6px 8px;
   font-size: 14px;
-  border-radius: 20px;
+  border-radius: 18px;
   background-color: #FF5151;
   color: white;
 }
@@ -166,4 +167,17 @@ p #full-overlay-content {
 
 .overlay-text {
   flex-direction: column;
+}
+
+.headphones {
+    height: 40px;
+    margin-right: 7px;
+}
+
+#title {
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+    align-items: center;
+    text-decoration: none;
 }

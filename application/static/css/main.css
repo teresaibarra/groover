@@ -1,5 +1,5 @@
 a:link {
-    color: #C0C0C0;
+    color: #FFFFFF;
     text-decoration: none;
 }
 
@@ -18,15 +18,18 @@ div.a {
     text-indent: 30px;
 }
 
-body{
-    font-family: 'rockwell';
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: #5157A3; /* For browsers that do not support gradients */
+    background-image: linear-gradient(to bottom left, #5157A3, #FF5151); /* Standard syntax (must be last) */
+    color: white;
 }
 
 input {
     width: 250px;
     padding: 10px 15px;
     font-size:14px;
-    border: 2px solid lightgrey;
+    border: 2px solid white;
     border-radius:12px;
     margin-top:12px;
     margin-left:10px;
@@ -42,6 +45,16 @@ h3, h4 {
     padding: 0;
     margin-bottom: 0;
     padding-bottom: 0;
+}
+
+h1 {
+    font-size: 60px;
+    margin: 0;
+}
+
+h2 {
+    font-size: 16px;
+    margin: 0;
 }
 
 .container {
@@ -71,9 +84,11 @@ h3, h4 {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
     height:150px;
     margin-top: -25px;
+    width:140px;
+    padding: 6px 8px;
+    font-size:14px;
 }
 
 .item{
@@ -81,4 +96,42 @@ h3, h4 {
     align-content: center;
     text-align: center;
     justify-content: space-around;
+}
+
+.about {
+    font-size: 11px;
+    color: white;
+    padding-left: 8px;
+}
+
+#submit {
+    width: 90px;
+    border: 2px solid #5157A3;
+    font-size: 14px;
+    box-shadow: 2px 2px #3B4077;
+    background-color: #5157A3;
+    color: white;
+    margin-bottom: 5px;
+}
+
+#again {
+    width: 135px;
+    height: 45px;
+    border: 2px solid #5157A3;
+    font-size: 14px;
+    border-radius: 18px;
+    box-shadow: 2px 2px #3B4077;
+    background-color: #5157A3;
+    color: white;
+}
+
+
+.title {
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.headphones {
+    height: 90px;
+    margin-right: 20px;
 }
