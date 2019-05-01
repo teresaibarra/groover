@@ -11,7 +11,6 @@ There is no way to concretely test the performance of the model. However, we hav
 already in our database, the same song is returned as the most similar result. This is expected because the lyrics should still be the same.
 
 ## Python Script
-TODO: explain python script
 Our architecture uses Python scripting to communicate with Spotify and Musixmatch’s API, as well as communicating with
 our document similarity model and our song database.
 
@@ -26,7 +25,7 @@ Heroku has automatic deployments to our website once a change was pushed to our 
 simplified our deployment process. Our heroku app can be directly accessed at http://cs121-groover.herokuapp.com.
 
 ## Demo
-TODO: include gif of web app use
+![alt text](documentation/GrooverDemo.gif "Groover Demo")
 
 
 ## Running Locally
