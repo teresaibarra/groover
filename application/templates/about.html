@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% block head %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css')+'?v=1' }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css')+'?v=1' }}">
 {% endblock %}
 {% block content %}
 <div class="container lookup">
     <div class="container">
-        <a href = "/" class="title-box"><img class="headphones" src="{{ url_for('static', filename='headphones.png') }}">
+        <a href = "/" class="title-box"><img class="headphones" src="{{ url_for('static', filename='headphones.png')+'?v=1' }}">
         <div class="container title">
             <h1>Groover</h1>
             <h2>smarter music recommendations</h2>
@@ -24,5 +24,5 @@
          CS121 Software Development project at Harvey Mudd College in Spring 2019.
          <br> <br> View Groover’s Github <a target="_blank"  href="https://github.com/teresaibarra/groover"> here</a>. </p>
     </div>
-    <img class="ruby" src="{{ url_for('static', filename='ruby.png') }}">
+    <img class="ruby" src="{{ url_for('static', filename='ruby.png')+'?v=1' }}">
 {% endblock %}
