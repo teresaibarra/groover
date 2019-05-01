@@ -136,3 +136,7 @@ h2 {
     display: flex;
     color: white;
 }
+
+.about {
+    font-size: 11px;
+}
