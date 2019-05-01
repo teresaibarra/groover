@@ -19,15 +19,14 @@ def lookup():
     """
     form = LoginForm()
     if form.validate_on_submit():
-		if set(form.artist.data).intersection("%^&*()<>?+=") or \
-        set(form.title.data).intersection("%^&*()<>?+="):
-			flash('Whoops! Please omit special characters.', category='error')
-			return render_template('whoops.html', title='error')
-		artist = str(form.artist.data)
-		artist=artist.replace('#','')
-		title = str(form.title.data)
-		title=title.replace('#','')
-		return redirect('/recommendations/' + artist + '/' +  title)
+        if set(form.artist.data).intersection("%^&*()<>?+=") or set(form.title.data).intersection("%^&*()<>?+="):
+            flash('Whoops! Please omit special characters.', category='error')
+            return render_template('whoops.html', title='error')
+        artist = str(form.artist.data)
+        artist=artist.replace('#','')
+        title = str(form.title.data)
+        title=title.replace('#','')
+        return redirect('/recommendations/' + artist + '/' +  title)
     if (form.artist.data and not form.title.data) or (not form.artist.data and form.title.data):
         flash('Whoops! Please enter both the song name and artist.', category='error')
         return render_template('whoops.html', title='Input error')

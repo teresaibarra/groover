@@ -13,6 +13,7 @@ p {
 .about {
   width: 60%;
   align-items: center;
+  margin-top: 30px;
 }
 
 .about-text {
@@ -20,5 +21,5 @@ p {
 }
 
 .ruby {
-  width: 100%;
+  width: 50%;
 }
