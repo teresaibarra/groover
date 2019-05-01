@@ -123,6 +123,7 @@ h2 {
     box-shadow: 2px 2px #3B4077;
     background-color: #5157A3;
     color: white;
+    margin-left: 20px;
 }
 
 #again:active {
