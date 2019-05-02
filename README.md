@@ -22,7 +22,7 @@ database. Therefore, it was easier to store our database as a JSON file, which w
 We found that it was easiest to deploy our application with Heroku instead of manually setting up with Amazon
 Web Services. We had spent several weeks attempting to set up our server on EC2, but struggled to connect this with Github.
 Heroku has automatic deployments to our website once a change was pushed to our master branch on Github, which greatly
-simplified our deployment process. Our heroku app can be directly accessed at http://cs121-groover.herokuapp.com.
+simplified our deployment process.
 
 ## Demo
 ![alt text](documentation/GrooverDemo.gif "Groover Demo")
