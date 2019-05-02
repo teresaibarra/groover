@@ -1,19 +1,35 @@
 h1 {
-  margin: 20px;
-  font-family: 'lena';
+  font-family: 'Raleway', sans-serif;
+  margin: 0;
+  color: white;
 }
 
 body {
-  font-family: 'rockwell';
+  font-family: 'Lato', sans-serif;
+  background-color: #5157A3; /* For browsers that do not support gradients */
+  background-image: linear-gradient(to bottom left, #5157A3, #FF5151); /* Standard syntax (must be last) */
+  color: white;
 }
 
 .again {
   margin: 20px;
-  border: 2px solid lightgrey;
+  border: 2px solid #FF5151;
+  box-shadow: 2px 2px #D14343;
   width: 140px;
   padding: 6px 8px;
   font-size: 14px;
-  border-radius: 20px;
+  border-radius: 12px;
+  background-color: #FF5151;
+  color: white;
+}
+
+.again:active {
+  background-color: #D14343;
+  border: 2px solid #D14343;
+}
+
+.again:focus {
+  outline: none;
 }
 
 .container {
@@ -90,7 +106,7 @@ audio {
   opacity: 0;
   margin: 1px 7px 2px;
   transition: .5s ease;
-  background-color: #008CBA;
+  background-color: #F6AE2D;
 }
 
 .recs:hover .overlay {
@@ -98,7 +114,6 @@ audio {
 }
 
 .text {
-  font-family: 'rockwell';
   color: white;
   font-size: 16px;
   position: absolute;
@@ -132,6 +147,7 @@ p {
 }
 
 #full-overlay-content{
+  border-radius: 12px;
   display: flex;
   width: 70%;
   height: 70%;
@@ -146,11 +162,10 @@ p {
 
 .image-button {
   border: none;
-  background-color: none;
+  background-color: transparent;
 }
 
 .overlay-box {
-  background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -162,4 +177,17 @@ p #full-overlay-content {
 
 .overlay-text {
   flex-direction: column;
+}
+
+.headphones {
+    height: 40px;
+    margin-right: 7px;
+}
+
+#title {
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+    align-items: center;
+    text-decoration: none;
 }

@@ -1,3 +1,25 @@
 aboutstyle {
     margin: 0;
+    padding: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+p {
+    font-size: 14px;
+    text-align: left;
+}
+
+.about {
+  width: 60%;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.about-text {
+  padding: 20px;
+}
+
+.ruby {
+  width: 50%;
 }

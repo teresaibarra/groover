@@ -1,24 +1,28 @@
 {% extends "base.html" %}
-
-<link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
-
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css')+'?v=1' }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css')+'?v=1' }}">
+{% endblock %}
 {% block content %}
-<br>
-    <sbox>
-        <a href = "/"><img src="{{ url_for('static', filename='css/logo.png') }}" style="width:329px; height:77px; margin-left:40px"></a>
-        <br>
-        <hr>
-        <br>
-        <h3 style="margin-top:-1px;"><b>How Groover Works</b></h3>
-        <div class="a">
-            <p style="margin-top:10px; text-align:left; font-size:14px">
-                Groover  is  a  web  application  that implements a deep learning neural network to generate music recommendations based  on  your favorite song's  lyrical content.  We measure document similarity between your input song’s lyrics  and  the  lyrics  of  55,000 songs  on  our  pre-trained  neural network model, then give you the top matches.<br><br>
-                This  web  app  was  developed  by  Siena  Guerrero,  Trevor  Walker,  Walker Quinn,  Teresa  Ibarra,  and  Jocelyn  Chen  for  their  Spring  2019  CS121 (“Software Development”) project at Harvey Mudd College.
-                <br><br>
-                View Groover’s Github <a href="https://github.com/teresaibarra/groover">here</a>.
-                <br><br>
-                <hr>
-            </p>
-        </div>
-    </sbox>
+<div class="container lookup">
+    <div class="container">
+        <a href = "/" class="title-box"><img class="headphones" src="{{ url_for('static', filename='headphones.png')+'?v=1' }}">
+        <div class="container title">
+            <h1>Groover</h1>
+            <h2>smarter music recommendations</h2>
+        </div></a>
+    </div>
+    <div class="container about">
+    <div class="container item">
+      <p class="about-text"><b>How does this work?</b> <br><br>
+         Groover implements a neural network to generate music
+         recommendations based on your favorite song's lyrical content. We measure
+         document similarity between the lyrics of an input song and the lyrics
+         of 57,000 songs on our pre-trained neural network model and give you the
+         best matches. <br><br>  This was developed by Siena Guerrero,
+         Trevor Walker, Walker Quinn, Teresa Ibarra, and Jocelyn Chen for their
+         CS121 Software Development project at Harvey Mudd College in Spring 2019.
+         <br> <br> View Groover’s Github <a target="_blank"  href="https://github.com/teresaibarra/groover"> here</a>. </p>
+    </div>
+    <img class="ruby" src="{{ url_for('static', filename='ruby.png')+'?v=1' }}">
 {% endblock %}
